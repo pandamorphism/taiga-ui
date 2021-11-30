@@ -21,10 +21,10 @@ import {encapsulation} from '../../../../../view-encapsulation';
     encapsulation,
 })
 export class TuiPrimitiveTextfieldExample1 extends AbstractTuiControl<string> {
-    private isPasswordHidden = true;
-
     @ViewChild(TuiPrimitiveTextfieldComponent)
     private readonly textfield?: TuiPrimitiveTextfieldComponent;
+
+    private isPasswordHidden = true;
 
     constructor(
         @Optional()

@@ -44,6 +44,8 @@ function convertRejected({file, reason}: RejectedFile): TuiFileLike {
     encapsulation,
 })
 export class TuiInputFileExample3 {
+    private readonly files$ = new Subject<ReadonlyArray<TuiFileLike>>();
+
     files: ReadonlyArray<TuiFileLike> = [
         {
             name: 'Loading file.txt',
@@ -61,8 +63,6 @@ export class TuiInputFileExample3 {
             content: 'Something went wrong this time',
         },
     ];
-
-    private readonly files$ = new Subject<ReadonlyArray<TuiFileLike>>();
 
     constructor(
         @Inject(TuiDestroyService) destroy$: TuiDestroyService,

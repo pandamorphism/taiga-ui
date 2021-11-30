@@ -23,9 +23,6 @@ export class TuiTreeComponent<T> {
     @Input()
     value!: T;
 
-    @Input()
-    content: PolymorpheusContent<TuiTreeContext<T>> = ({$implicit}) => String($implicit);
-
     constructor(
         @Optional()
         @Inject(TuiTreeChildrenDirective)
@@ -38,4 +35,7 @@ export class TuiTreeComponent<T> {
             TuiTreeChildrenDirective.defaultHandler(this.value)
         );
     }
+
+    @Input()
+    content: PolymorpheusContent<TuiTreeContext<T>> = ({$implicit}) => String($implicit);
 }

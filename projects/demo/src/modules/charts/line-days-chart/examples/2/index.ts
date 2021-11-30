@@ -29,18 +29,6 @@ export class TuiLineDaysChartExample2 {
 
     readonly maxLength: TuiDayLike = {month: 6};
 
-    readonly filter: TuiMatcher<[TuiDay, number]> = ([day], {from, to}: TuiDayRange) =>
-        day.daySameOrAfter(from) && day.daySameOrBefore(to);
-
-    readonly toNumbers: TuiMapper<
-        ReadonlyArray<[TuiDay, number]>,
-        ReadonlyArray<TuiPoint>
-    > = (days, {from}: TuiDayRange) =>
-        days.map(
-            ([day, value]) =>
-                [TuiDay.lengthBetween(from, day), value] as [number, number],
-        );
-
     get range(): TuiDayRange {
         return this.computeRange(this.show);
     }
@@ -55,18 +43,20 @@ export class TuiLineDaysChartExample2 {
         return day instanceof TuiDay ? day : date.append({day});
     }
 
+    readonly filter: TuiMatcher<[TuiDay, number]> = ([day], {from, to}: TuiDayRange) =>
+        day.daySameOrAfter(from) && day.daySameOrBefore(to);
+
+    readonly toNumbers: TuiMapper<
+        ReadonlyArray<[TuiDay, number]>,
+        ReadonlyArray<TuiPoint>
+    > = (days, {from}: TuiDayRange) =>
+        days.map(
+            ([day, value]) =>
+                [TuiDay.lengthBetween(from, day), value] as [number, number],
+        );
+
     onDataChange(data: TuiDayRange) {
         this.days = this.computeArrays(data);
-    }
-
-    private computeArrays(
-        data: TuiDayRange,
-    ): ReadonlyArray<ReadonlyArray<[TuiDay, number]>> {
-        return [
-            this.computeData(data, 100),
-            this.computeData(data, 75),
-            this.computeData(data, 50),
-        ];
     }
 
     @tuiPure
@@ -119,5 +109,15 @@ export class TuiLineDaysChartExample2 {
                 [],
             )
             .filter(([day]) => day.dayOfWeek() < 5);
+    }
+
+    private computeArrays(
+        data: TuiDayRange,
+    ): ReadonlyArray<ReadonlyArray<[TuiDay, number]>> {
+        return [
+            this.computeData(data, 100),
+            this.computeData(data, 75),
+            this.computeData(data, 50),
+        ];
     }
 }

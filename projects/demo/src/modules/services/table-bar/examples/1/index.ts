@@ -14,10 +14,10 @@ import {encapsulation} from '../../../../../view-encapsulation';
     encapsulation,
 })
 export class TuiTableBarExampleComponent1 {
-    subscription = new Subscription();
-
     @ViewChild('tableBarTemplate')
     tableBarTemplate: PolymorpheusContent = '';
+
+    subscription = new Subscription();
 
     constructor(
         @Inject(TuiTableBarsService)

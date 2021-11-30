@@ -16,9 +16,6 @@ interface TreeNode {
     encapsulation,
 })
 export class TuiTreeExample4 {
-    readonly handler: TuiHandler<TreeNode, readonly TreeNode[]> = item =>
-        item.children || EMPTY_ARRAY;
-
     readonly data: TreeNode = {
         text: 'Topmost',
         children: [
@@ -44,6 +41,9 @@ export class TuiTreeExample4 {
     };
 
     readonly map = new Map<TreeNode, boolean>();
+
+    readonly handler: TuiHandler<TreeNode, readonly TreeNode[]> = item =>
+        item.children || EMPTY_ARRAY;
 
     toggleTopmost() {
         this.map.set(this.data, !this.map.get(this.data));

@@ -77,6 +77,9 @@ const KEYS: Record<string, Key> = {
     encapsulation,
 })
 export class TuiTableExample4 {
+    private readonly size$ = new Subject<number>();
+    private readonly page$ = new Subject<number>();
+
     readonly sorters: Record<Key, TuiComparator<User>> = {
         name: () => 0,
         dob: () => 0,
@@ -89,11 +92,7 @@ export class TuiTableExample4 {
 
     readonly minAge = new FormControl(21);
 
-    private readonly size$ = new Subject<number>();
-
-    private readonly page$ = new Subject<number>();
-
-    private readonly request$ = combineLatest([
+    readonly request$ = combineLatest([
         this.sorter$.pipe(map(sorter => getKey(sorter, this.sorters))),
         this.direction$,
         this.page$.pipe(startWith(0)),

@@ -13,10 +13,6 @@ import {encapsulation} from '../../../../../view-encapsulation';
     encapsulation,
 })
 export class TuiLineChartExample5 {
-    readonly hint: TuiStringHandler<TuiContextWithImplicit<ReadonlyArray<TuiPoint>>> = ({
-        $implicit,
-    }) => `${$implicit[0][0]} items:\n\n${$implicit.map(([_, y]) => y).join('$\n')}$`;
-
     readonly values = [
         [
             [50, 50],
@@ -46,4 +42,8 @@ export class TuiLineChartExample5 {
             [350, 150],
         ],
     ];
+
+    readonly hint: TuiStringHandler<TuiContextWithImplicit<ReadonlyArray<TuiPoint>>> = ({
+        $implicit,
+    }) => `${$implicit[0][0]} items:\n\n${$implicit.map(([_, y]) => y).join('$\n')}$`;
 }

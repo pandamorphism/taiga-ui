@@ -11,7 +11,7 @@ import {encapsulation} from '../../../../../view-encapsulation';
     encapsulation,
 })
 export class TuiTokensExample1 {
-    constructor(@Inject(TUI_DEFAULT_RENDERER) private readonly renderer: Renderer2) {}
-
     style = this.renderer.createElement('style');
+
+    constructor(@Inject(TUI_DEFAULT_RENDERER) private readonly renderer: Renderer2) {}
 }
